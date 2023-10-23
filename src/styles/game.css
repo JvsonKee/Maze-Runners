@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Reggae+One&display=swap");
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a {
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+#nav-bar {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+}
+
+#nav-content {
+  display: flex;
+  align-items: baseline;
+  gap: 80px;
+  margin: 0 auto;
+  width: 90vw;
+}
+
+#nav-header {
+  color: #EAB14B;
+  font-size: 42px;
+  transition: 0.3s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+}
+
+#home-link {
+  font-size: 18px;
+  color: #E1C8AC;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+#home-link:hover {
+  color: #619259;
+}
+
+body {
+  background-color: #282521;
+  font-family: sans-serif;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#game-content-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#gameboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+#scoreboard-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #1D1B18;
+  width: calc(70vw + 10px);
+  height: 10vh;
+}
+
+.player-score-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#score-header {
+  font-size: 30px;
+  color: #EAB14B;
+}
+
+.player-name {
+  color: #E1C8AC;
+  font-size: 25px;
+}
+
+.player-score {
+  color: #619259;
+  font-size: 42px;
+}
+
+#gameboard {
+  display: grid;
+  width: 70vw;
+  height: 600px;
+  border: 5px solid black;
+}
+
+#turn-information {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #E1C8AC;
+  font-size: 30px;
+}
+
+#leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 20vw;
+}
+
+#leaderboard-header {
+  background-color: #1D1B18;
+  border-radius: 10px;
+  color: #EAB14B;
+  font-size: 30px;
+  line-height: 10vh;
+  text-align: center;
+  height: 10vh;
+}
+
+#leaderboard-scores {
+  background-color: rgba(59, 54, 48, 0.662745098);
+  border-radius: 10px;
+  height: 610px;
+}
+
+/*# sourceMappingURL=game.css.map */

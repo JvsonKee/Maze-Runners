@@ -1,0 +1,77 @@
+@import "Global";
+
+.instructions-header {
+    font-size: $l;
+    // font-weight: bold;
+    color: $yellow;
+}
+
+a {
+    text-decoration: none;
+}
+
+#back-button {
+    background-color: $black;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: $green;
+    line-height: 50px;
+    width: 150px;
+    height: 50px;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+        color: $tan;
+        transform: translateX(-3px);
+        cursor: pointer;
+    }
+}
+
+#rules {
+    ul li {
+        margin-bottom: 5px;
+        font-size: $s;
+    }
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#instructions-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 90vw;
+    height: 80vh;
+    color: $tan;
+}
+
+.control-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $black;
+    border-radius: 10px;
+    width: 400px;
+    height: 60px;
+}
+
+
+.control-name {
+    padding-left: 20px;
+    font-size: $m;
+    font-weight: bold;
+    color: $green;
+}
+
+.control-bind {
+    padding-right: 20px;
+    line-height: 60px;
+    width: 115px;
+    height: 100%;
+}

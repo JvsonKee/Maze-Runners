@@ -1,0 +1,9 @@
+@import "Normalizer";
+@import "colours";
+@import "fonts";
+@import "NavBar";
+
+body {
+    background-color: $dark-brown;
+    font-family: sans-serif;
+}

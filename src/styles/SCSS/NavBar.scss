@@ -1,0 +1,35 @@
+#nav-bar {
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    // background-color: $black;
+}
+
+#nav-content {
+    display: flex;
+    align-items: baseline;
+    gap: 80px;
+    margin: 0 auto;
+    width: 90vw;
+}
+
+#nav-header {
+    color: $yellow;
+    font-size: 42px;
+    transition: 0.3s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}
+
+#home-link {
+    font-size: $s;
+    color: $tan;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        color: $green;
+    }
+}

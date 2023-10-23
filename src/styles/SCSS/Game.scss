@@ -1,0 +1,89 @@
+@import "Global";
+
+#container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#game-content-container {
+    display: flex;
+    justify-content: space-evenly;    
+}
+
+#gameboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-evenly;
+}
+
+#scoreboard-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $black;
+    width: calc(70vw + 10px);
+    height: 10vh;
+}
+
+.player-score-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#score-header {
+    font-size: $l;
+    color: $yellow;
+}
+
+.player-name {
+    color: $tan;
+    font-size: 25px;
+}
+
+.player-score {
+    color: $green;
+    font-size: $xl;
+}
+
+#gameboard {
+    display: grid;
+    width: 70vw;
+    height: 600px;
+    border: 5px solid black;
+}
+
+#turn-information {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: $tan;
+    font-size: $l;
+}
+
+#leaderboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 20vw;
+}
+
+#leaderboard-header {
+    background-color: $black;
+    border-radius: 10px;
+    color: $yellow;
+    font-size: $l;
+    line-height: 10vh;
+    text-align: center;
+    height: 10vh;
+}
+
+#leaderboard-scores {
+    background-color: $black-lo;
+    border-radius: 10px;
+    height: 610px;
+}
