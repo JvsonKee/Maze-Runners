@@ -11,7 +11,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: flex;
   align-items: center;
   height: 10vh;
-  background-color: black;
 }
 
 #nav-content {
