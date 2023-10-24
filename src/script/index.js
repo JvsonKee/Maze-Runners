@@ -1,5 +1,19 @@
-let firstPlayerScore = 0;
-let secondPlayerScore = 0;
+/**
+ * stores the time of the current runs
+ */
+let firstPlayerTime = 0;
+let secondPlayerTime = 0;
+
+/**
+ * holds all players' scores respectively 
+ */
+let firstPlayerScores = [];
+let secondPlayerScores = [];
+
+/**
+ * contains the top scores 
+ */
+let leaderboard = [];
 
 /**
  * special item array
@@ -7,62 +21,17 @@ let secondPlayerScore = 0;
  */
 let specialItemsArray = new Array(2);
 
-const maze = [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1],
-    [1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1],
-    [1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1,0,1,1,1],
-    [1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,1,1],
-    [1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,1,1],
-    [1,0,0,1,0,1,0,1,1,1,1,0,0,0,0,0,1,1,0,1,0,0,0,1,1,0,1,1,1],
-    [1,0,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,1],
-    [2,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,0,0,1,1,1],
-    [1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,0,1,0,1,0,0,0,3],
-    [1,1,0,1,0,0,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,1,0,1,1,1,1,1],
-    [1,1,0,1,0,1,0,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,1,0,0,0,1],
-    [1,0,0,1,0,1,0,0,0,1,0,0,0,0,1,1,1,1,0,1,1,0,1,0,1,0,1,0,1],
-    [1,0,1,1,0,1,0,1,0,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
-    [1,0,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-    [1,1,1,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-]
+/**
+ * maze array
+ * will be used as the map
+ */
+const maze = []
 
-generateMaze();
-
-function generateMaze() {
-    gameboard.style.gridTemplateColumns = `repeat(${maze.length}, 1fr)`;
-    gameboard.style.gridTemplateColumns = `repeat(${maze[0].length}, 1fr)`;
-
-    for (let i = 0; i < maze.length; i++) {
-        for (let j = 0; j < maze[i].length; j++) {
-            const div = document.createElement('div');
-            switch (maze[i][j]) {
-                case 0: 
-                    div.classList.add('path');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "tan";
-                    break;
-                case 1:
-                    div.classList.add('tree');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#619259";
-                    break;
-                case 2:
-                    div.classList.add('player');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#67d9ff";
-                    break;
-                case 3: 
-                    div.classList.add('finish');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#ffd630";
-                    break;
-                default:
-                    break;
-            }
-        } 
-    }
-}
+/**
+ * function to generate the maze
+ * need to generate the maze based of the defined "maze" variable
+ */
+function generateMaze() {}
 
 /**
  * function for player movement
@@ -72,6 +41,7 @@ function move() {}
 
 /**
  * function to update the tile the player is currently on/passed over 
+ * will need to change tile appearance when play passes over the tile
  */
 function updateTile() {}
 
@@ -97,7 +67,7 @@ function pickupItem() {}
 
 /**
  * function for counting total items after player has completed their run
- * will be used to calculate total score
+ * will be used when calculating overall score of a run
  */
 function countItems() {}
 
@@ -118,6 +88,7 @@ function resetTime() {}
 
 /**
  * function to calculate the winner of a run 
+ * need to implement simple calculation to determine which player took the least ammount of time
  */
 function calculateWinner() {}
 
@@ -154,3 +125,8 @@ function playAgain() {}
  * lowest -> highest
  */
 function updateLeaderboard() {}
+
+/**
+ * will be used to sort leaderboard scores
+ */
+function quickSort() {}
