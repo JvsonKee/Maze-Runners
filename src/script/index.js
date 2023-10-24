@@ -62,9 +62,19 @@ function countItems() {}
 function timer() {}
 
 /**
+ * function to reset the time after players run
+ */
+function resetTime() {}
+
+/**
  * function to calculate the winner of a run 
  */
 function calculateWinner() {}
+
+/**
+ * function to display the winner
+ */
+function displayWinner() {}
 
 /**
  * function to update the scoreboard
@@ -73,8 +83,19 @@ function calculateWinner() {}
 function updateScore() {}
 
 /**
+ * function to update the current players name on the screen
+ */
+function updateCurrentPlayer() {}
+
+/**
+ * function for asking players if they would like to play again
+ */
+function playAgain() {}
+
+/**
  * function to update the leaderboard
  * will need to choose a sorting algorithm to ensure the scores are displayed properly 
+ * probably use quick-sort
  * lowest -> highest
  */
 function updateLeaderboard() {}
