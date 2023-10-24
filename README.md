@@ -16,3 +16,8 @@ Maze Runners is a two-player puzzle game where players will race each other to e
 
 - Players can traverse the maze (arrow keys or WASD).
 - Floor loot players can attain to reduce their time.
+
+### Items
+
+- Berry - Reduces overall time by 1 second
+- Golden Berry - Reduces overall time by 3 seconds
