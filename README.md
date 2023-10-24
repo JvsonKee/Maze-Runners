@@ -1,5 +1,7 @@
 # Maze-Runners
 
+Jason Kee (30140765)
+
 **Maze Runners** is a two-player puzzle game where players will race each other to escape the maze.
 
 **Platform:** Desktop <br>
