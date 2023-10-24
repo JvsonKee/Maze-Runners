@@ -11,6 +11,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: flex;
   align-items: center;
   height: 10vh;
+  background-color: black;
 }
 
 #nav-content {
@@ -27,10 +28,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   transition: 0.3s ease-in-out;
 }
 
-a {
-  text-decoration: none;
-}
-
 #home-link {
   font-size: 18px;
   color: #E1C8AC;
@@ -44,6 +41,10 @@ a {
 body {
   background-color: #282521;
   font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 #menu-container {
@@ -74,8 +75,10 @@ body {
   color: #619259;
 }
 
-a {
-  text-decoration: none;
+#instructions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .instructions-header {
@@ -83,11 +86,20 @@ a {
   color: #EAB14B;
 }
 
-a {
-  text-decoration: none;
+#instructions-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 20px;
+  margin: 0 auto;
+  width: 90vw;
+  color: #E1C8AC;
 }
 
-#back-button {
+#back-link {
+  width: 150px;
+}
+#back-link #back-button {
   background-color: #1D1B18;
   border-radius: 10px;
   text-align: center;
@@ -98,15 +110,30 @@ a {
   height: 50px;
   transition: 0.2s ease-in-out;
 }
-#back-button:hover {
+#back-link #back-button:hover {
   color: #E1C8AC;
   transform: translateX(-3px);
   cursor: pointer;
 }
 
-#rules ul li {
+#rule-list li {
   margin-bottom: 5px;
   font-size: 18px;
+}
+
+#item-container {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 18px;
+}
+
+.special-item {
+  display: flex;
+  align-items: center;
+}
+
+.berry-image {
+  width: 150px;
 }
 
 #controls {
@@ -115,14 +142,10 @@ a {
   gap: 20px;
 }
 
-#instructions-wrapper {
+#controls-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  margin: 0 auto;
-  width: 90vw;
-  height: 80vh;
-  color: #E1C8AC;
+  gap: 20px;
 }
 
 .control-container {
@@ -132,7 +155,6 @@ a {
   background-color: #1D1B18;
   border-radius: 10px;
   width: 400px;
-  height: 60px;
 }
 
 .control-name {
@@ -146,7 +168,6 @@ a {
   padding-right: 20px;
   line-height: 60px;
   width: 115px;
-  height: 100%;
 }
 
 #container {
