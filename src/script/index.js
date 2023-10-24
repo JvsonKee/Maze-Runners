@@ -1,7 +1,18 @@
+/**
+ * stores the time of the current runs
+ */
 let firstPlayerTime = 0;
 let secondPlayerTime = 0;
+
+/**
+ * holds all players' scores respectively 
+ */
 let firstPlayerScores = [];
 let secondPlayerScores = [];
+
+/**
+ * contains the top scores 
+ */
 let leaderboard = [];
 
 /**
