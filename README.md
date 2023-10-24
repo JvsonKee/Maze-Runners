@@ -1,6 +1,6 @@
 # Maze-Runners
 
-Maze Runners is a two-player puzzle game where players will race each other to escape the maze.
+**Maze Runners** is a two-player puzzle game where players will race each other to escape the maze.
 
 **Platform:** Desktop <br>
 **Genre:** Puzzle
@@ -15,7 +15,7 @@ Maze Runners is a two-player puzzle game where players will race each other to e
 ### Mechanics
 
 - Players can traverse the maze (arrow keys or WASD).
-- Floor loot players can attain to reduce their time.
+- Special items players can pick-up to reduce their time.
 
 ### Items
 

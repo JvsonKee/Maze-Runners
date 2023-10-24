@@ -3,9 +3,9 @@ let secondPlayerScore = 0;
 
 /**
  * special item array
- * there are currently 3 special items players will be able to find on the map
+ * there are currently 2 special items players will be able to find on the map
  */
-let specialItemsArray = new Array(3);
+let specialItemsArray = new Array(2);
 
 /**
  * maze array
@@ -26,6 +26,11 @@ function generateMaze() {}
 function move() {}
 
 /**
+ * function to update the tile the player is currently on/passed over 
+ */
+function updateTile() {}
+
+/**
  * boolean function to check if player is moving to a valid space
  */
 function isPath() {}
@@ -39,6 +44,17 @@ function isSpecialItem() {}
  * boolean function to check if player is running into a wall
  */
 function isWall() {}
+
+/**
+ * function for picking up an item found in the maze
+ */
+function pickupItem() {}
+
+/**
+ * function for counting total items after player has completed their run
+ * will be used to calculate total score
+ */
+function countItems() {}
 
 /**
  * function to time player's runs
