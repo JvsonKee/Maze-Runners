@@ -1,68 +1,44 @@
-const gameboard = document.querySelector('#gameboard');
-
 let firstPlayerScore = 0;
 let secondPlayerScore = 0;
 
-const maze = [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,1],
-    [1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1],
-    [1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1,0,1,1,1],
-    [1,0,0,1,1,0,0,1,0,1,1,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,1,1],
-    [1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,1,1],
-    [1,0,0,1,0,1,0,1,1,1,1,0,0,0,0,0,1,1,0,1,0,0,0,1,1,0,1,1,1],
-    [1,0,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,1],
-    [2,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,0,0,1,1,1],
-    [1,1,0,1,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,1,1,0,1,0,1,0,0,0,3],
-    [1,1,0,1,0,0,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,1,0,1,1,1,1,1],
-    [1,1,0,1,0,1,0,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,1,0,0,0,1],
-    [1,0,0,1,0,1,0,0,0,1,0,0,0,0,1,1,1,1,0,1,1,0,1,0,1,0,1,0,1],
-    [1,0,1,1,0,1,0,1,0,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
-    [1,0,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-    [1,1,1,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,0,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-]
+/**
+ * special item array
+ * there are currently 3 special items players will be able to find on the map
+ */
+let specialItemsArray = new Array(3);
 
-generateMaze();
-function generateMaze() {
-    gameboard.style.gridTemplateColumns = `repeat(${maze.length}, 1fr)`;
-    gameboard.style.gridTemplateColumns = `repeat(${maze[0].length}, 1fr)`;
+/**
+ * maze array
+ * will be used as the map
+ */
+const maze = []
 
-    for (let i = 0; i < maze.length; i++) {
-        for (let j = 0; j < maze[i].length; j++) {
-            const div = document.createElement('div');
-            switch (maze[i][j]) {
-                case 0: 
-                    div.classList.add('path');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "tan";
-                    break;
-                case 1:
-                    div.classList.add('tree');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#619259";
-                    break;
-                case 2:
-                    div.classList.add('player');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#67d9ff";
-                    break;
-                case 3: 
-                    div.classList.add('finish');
-                    gameboard.append(div);
-                    div.style.backgroundColor = "#ffd630";
-                    break;
-                default:
-                    break;
-            }
-        } 
-    }
-}
+/**
+ * function to generate the maze
+ * need to generate the maze based of the defined "maze" variable
+ */
+function generateMaze() {}
 
 /**
  * function for player movement
+ * need to implement up, down, left and right movement for the player
  */
 function move() {}
+
+/**
+ * boolean function to check if player is moving to a valid space
+ */
+function isPath() {}
+
+/**
+ * boolean function to check if player is on a special item spot
+ */
+function isSpecialItem() {}
+
+/**
+ * boolean function to check if player is running into a wall
+ */
+function isWall() {}
 
 /**
  * function to time player's runs
@@ -70,16 +46,19 @@ function move() {}
 function timer() {}
 
 /**
- * function to calculate the winner of a run
+ * function to calculate the winner of a run 
  */
 function calculateWinner() {}
 
 /**
  * function to update the scoreboard
+ * need to implement a simple incrementer to update the respective player's score
  */
 function updateScore() {}
 
 /**
  * function to update the leaderboard
+ * will need to choose a sorting algorithm to ensure the scores are displayed properly 
+ * lowest -> highest
  */
 function updateLeaderboard() {}
