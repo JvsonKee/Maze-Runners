@@ -14,7 +14,7 @@ UCID: 30140765
         <title>Maze Runners</title>
     </head>
     <body>
-        <div id="container">
+        <div id="instructions-container">
             <div id="nav-bar">
                 <div id="nav-content">
                     <a href="home.html">
@@ -23,12 +23,12 @@ UCID: 30140765
                 </div>  
             </div>
             <div id="instructions-wrapper">
-                <a href="home.html">
+                <a id="back-link" href="home.html">
                     <div id="back-button">Back</div>
                 </a>
                 <div id="rules">
                     <div class="instructions-header">Rules</div>
-                    <ul>
+                    <ul id="rule-list">
                         <li>Maze Runners is a 2-player puzzle game where players will race each other to escape the maze.</li>
                         <li>Players will take turns completing the maze.</li>
                         <li>Multiple paths to the finish line.</li>
@@ -36,23 +36,38 @@ UCID: 30140765
                         <li>The player with the fastest time wins.</li>
                     </ul>
                 </div>
+                <div id="items">
+                    <div class="instructions-header">Items</div>
+                    <div id="item-container">
+                        <div class="special-item">
+                            <img class="berry-image" src="../../images/berry.png" alt="berry">
+                            <div class="item-description">Berry - Reduces overall time by 1 second.</div>
+                        </div>
+                        <div class="special-item">
+                            <img class="berry-image" src="../../images/golden-berry.png" alt="golden berry">
+                            <div class="item-description">Golden Berry - Reduces overall time by 3 seconds.</div>
+                        </div>
+                    </div>
+                </div>
                 <div id="controls">
                     <div class="instructions-header">Controls</div>
-                    <div class="control-container">
-                        <div class="control-name">Move forward</div>
-                        <div class="control-bind">W / KEY UP</div>
-                    </div>
-                    <div class="control-container">
-                        <div class="control-name">Move left</div>
-                        <div class="control-bind">A / KEY LEFT</div>
-                    </div>
-                    <div class="control-container">
-                        <div class="control-name">Move backward</div>
-                        <div class="control-bind">S / KEY DOWN</div>
-                    </div>
-                    <div class="control-container">
-                        <div class="control-name">Move right</div>
-                        <div class="control-bind">D / KEY RIGHT</div>
+                    <div id="controls-wrapper">
+                        <div class="control-container">
+                            <div class="control-name">Move forward</div>
+                            <div class="control-bind">W / KEY UP</div>
+                        </div>
+                        <div class="control-container">
+                            <div class="control-name">Move left</div>
+                            <div class="control-bind">A / KEY LEFT</div>
+                        </div>
+                        <div class="control-container">
+                            <div class="control-name">Move backward</div>
+                            <div class="control-bind">S / KEY DOWN</div>
+                        </div>
+                        <div class="control-container">
+                            <div class="control-name">Move right</div>
+                            <div class="control-bind">D / KEY RIGHT</div>
+                        </div>
                     </div>
                 </div>
             </div>
