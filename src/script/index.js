@@ -1,5 +1,8 @@
-let firstPlayerScore = 0;
-let secondPlayerScore = 0;
+let firstPlayerTime = 0;
+let secondPlayerTime = 0;
+let firstPlayerScores = [];
+let secondPlayerScores = [];
+let leaderboard = [];
 
 /**
  * special item array
@@ -11,7 +14,7 @@ let specialItemsArray = new Array(2);
  * maze array
  * will be used as the map
  */
-const maze = []
+const maze = [];
 
 /**
  * function to generate the maze
@@ -27,6 +30,7 @@ function move() {}
 
 /**
  * function to update the tile the player is currently on/passed over 
+ * will need to change tile appearance when play passes over the tile
  */
 function updateTile() {}
 
@@ -52,7 +56,7 @@ function pickupItem() {}
 
 /**
  * function for counting total items after player has completed their run
- * will be used to calculate total score
+ * will be used when calculating overall score of a run
  */
 function countItems() {}
 
@@ -73,6 +77,7 @@ function resetTime() {}
 
 /**
  * function to calculate the winner of a run 
+ * need to implement simple calculation to determine which player took the least ammount of time
  */
 function calculateWinner() {}
 
@@ -109,3 +114,8 @@ function playAgain() {}
  * lowest -> highest
  */
 function updateLeaderboard() {}
+
+/**
+ * will be used to sort leaderboard scores
+ */
+function quickSort() {}
