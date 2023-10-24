@@ -57,12 +57,17 @@ function pickupItem() {}
 function countItems() {}
 
 /**
+ * function to reset item count after player's run
+ */
+function resetItemCount() {}
+
+/**
  * function to time player's runs
  */
 function timer() {}
 
 /**
- * function to reset the time after players run
+ * function to reset the time after player's run
  */
 function resetTime() {}
 
@@ -81,6 +86,11 @@ function displayWinner() {}
  * need to implement a simple incrementer to update the respective player's score
  */
 function updateScore() {}
+
+/**
+ * function to reset the score
+ */
+function resetScore() {}
 
 /**
  * function to update the current players name on the screen
