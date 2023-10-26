@@ -180,17 +180,16 @@ a {
   justify-content: space-evenly;
 }
 
-#gameboard-container {
+#scoreboard-gameboard-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  justify-content: space-evenly;
 }
 
 #scoreboard-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   border-radius: 10px;
   background-color: #1D1B18;
@@ -198,14 +197,51 @@ a {
   height: 10vh;
 }
 
-#score-header {
-  font-size: 30px;
-  color: #EAB14B;
+.player-information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
-
-.player-name {
+.player-information .player-name {
   color: #E1C8AC;
   font-size: 25px;
+}
+.player-information #item-count-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 35px;
+  width: 200px;
+}
+.player-information .item-holder {
+  display: flex;
+  width: 30%;
+  height: 100%;
+}
+.player-information .item-holder .item-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
+  width: 100px;
+}
+.player-information .item-holder .item-picture img {
+  height: 90%;
+}
+.player-information .item-holder .item-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 10px 10px 0;
+  font-size: 20px;
+  color: #EAB14B;
+  width: 100px;
+}
+
+#timer {
+  font-size: 42px;
+  color: #EAB14B;
 }
 
 .player-score {
@@ -249,67 +285,13 @@ a {
   background-color: #ffd630;
 }
 
-#turn-information {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #E1C8AC;
-  gap: 10px;
-  font-size: 30px;
-}
-
-#current-player-information {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-#item-count-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 60px;
-  width: 400px;
-}
-
-.item-holder {
-  display: flex;
-  width: 40%;
-  height: 100%;
-}
-
-.item-picture {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #1D1B18;
-  border-radius: 10px 0 0 10px;
-  width: 100px;
-}
-.item-picture img {
-  height: 90%;
-}
-
-.item-count {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(59, 54, 48, 0.662745098);
-  border-radius: 0 10px 10px 0;
-  font-size: 30px;
-  color: #EAB14B;
-  width: 100px;
-}
-
 #leaderboard {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 20vw;
 }
-
-#leaderboard-header {
+#leaderboard #leaderboard-header {
   background-color: #1D1B18;
   border-radius: 10px;
   color: #EAB14B;
@@ -318,8 +300,7 @@ a {
   text-align: center;
   height: 10vh;
 }
-
-#leaderboard-scores {
+#leaderboard #leaderboard-scores {
   background-color: rgba(59, 54, 48, 0.662745098);
   border-radius: 10px;
   height: 610px;

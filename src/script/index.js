@@ -58,7 +58,7 @@ function Player(name, id,  xCoordinate, yCoordinate) {
     this.id = id;
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
-    this.specialItems = [0, 0];
+    this.specialItems = [0,0];
 
     this.right = function() {
         if (!isWall(xCoordinate, yCoordinate + 1) && !isOtherPlayer(xCoordinate, yCoordinate + 1)) {
@@ -131,12 +131,10 @@ function Player(name, id,  xCoordinate, yCoordinate) {
     this.pickupItem = function(x, y) {
         if (maze[x][y] === 4) {
             this.specialItems[0]++;
-            let berryCount = document.querySelector('#berry-count');
-            berryCount.innerHTML = this.specialItems[0];
+            updateItemCount(id, this.specialItems, 4);
         } else if (maze[x][y] === 5) {
             this.specialItems[1]++;
-            let goldenBerryCount = document.querySelector('#gold-berry-count');
-            goldenBerryCount.innerHTML = this.specialItems[1];
+            updateItemCount(id, this.specialItems, 5);
         }
     }
 }
@@ -150,12 +148,6 @@ let blue = "#67d9ff";
 let gold = "#ffd630";
 
 /**
- * stores the time of the current runs
- */
-let firstPlayerTime = 0;
-let secondPlayerTime = 0;
-
-/**
  * holds all players' scores respectively 
  */
 let firstPlayerScores = [];
@@ -165,12 +157,6 @@ let secondPlayerScores = [];
  * contains the top scores 
  */
 let leaderboard = [];
-
-/**
- * special item array
- * there are currently 2 special items players will be able to find on the map
- */
-let specialItemsArray = [0, 0];
 
 const maze = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -191,8 +177,10 @@ const maze = [
     [1,1,1,0,1,1,0,0,0,0,0,4,0,0,1,0,0,5,1,1,1,4,0,0,0,0,0,0,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ];
-let playerXCoordinate = 8;
-let playerYCoordinate = 0;
+
+function sayHello() {
+    console.log("hello");
+}
 
 generateMaze();
 
@@ -350,6 +338,27 @@ function isFinished(x, y) {
         return true;
     }
     return false;
+}
+
+function updateItemCount(id, array, type) {
+    switch(id) {
+        case 2: 
+            if (type === 4) {
+                document.querySelector('#p1-berry-count').innerHTML = array[0];
+            } else if (type === 5) {
+                document.querySelector('#p1-gold-berry-count').innerHTML = array[1];
+            }
+            break;
+        case 3:
+            if (type === 4) {
+                document.querySelector('#p2-berry-count').innerHTML = array[0];
+            } else if (type === 5) {
+                document.querySelector('#p2-gold-berry-count').innerHTML = array[1];
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 /**

@@ -25,36 +25,48 @@ UCID: 30140765
                 </div>
             </div>
             <div id="game-content-container">
-                <div id="gameboard-container">
+                <div id="scoreboard-gameboard-container">
                     <div id="scoreboard-container">
-                        <div class="player-name">Player 1</div>
-                        <div id="first-player-score" class="player-score">0</div>
-                        <div id="score-header">Score</div>
-                        <div id="second-player-score" class="player-score">0</div>
-                        <div class="player-name">Player 2</div>
+                        <div class="player-information">
+                            <div class="player-name">Player 1</div>
+                            <div id="item-count-container">
+                                <div class="item-holder">
+                                    <div class="item-picture">
+                                        <img src="../../images/berry.png" alt="berry">
+                                    </div>
+                                    <div class="item-count" id="p1-berry-count">0</div>
+                                </div>
+                                <div class="item-holder">
+                                    <div class="item-picture">
+                                        <img src="../../images/golden-berry.png" alt="golden berry">
+                                    </div>
+                                    <div class="item-count" id="p1-gold-berry-count">0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="first-player-score" class="player-score"></div>
+                        <div id="timer">0:00</div>
+                        <div id="second-player-score" class="player-score"></div>
+                        <div class="player-information">
+                            <div class="player-name">Player 2</div>
+                            <div id="item-count-container">
+                                <div class="item-holder">
+                                    <div class="item-picture">
+                                        <img src="../../images/berry.png" alt="berry">
+                                    </div>
+                                    <div class="item-count" id="p2-berry-count">0</div>
+                                </div>
+                                <div class="item-holder">
+                                    <div class="item-picture">
+                                        <img src="../../images/golden-berry.png" alt="golden berry">
+                                    </div>
+                                    <div class="item-count" id="p2-gold-berry-count">0</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div id="game-wrapper">
                         <div id="gameboard"></div>
-                        <div id="turn-information">
-                            <div id="current-player-information">
-                                <div>Current Player</div>
-                                <div id="item-count-container">
-                                    <div class="item-holder">
-                                        <div class="item-picture">
-                                            <img src="../../images/berry.png" alt="berry">
-                                        </div>
-                                        <div class="item-count" id="berry-count">0</div>
-                                    </div>
-                                    <div class="item-holder">
-                                        <div class="item-picture">
-                                            <img src="../../images/golden-berry.png" alt="golden berry">
-                                        </div>
-                                        <div class="item-count" id="gold-berry-count">0</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="timer">0:00</div>
-                        </div>
                     </div>
                 </div>
                 <div id="leaderboard">
