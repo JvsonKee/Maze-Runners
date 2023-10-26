@@ -1,4 +1,4 @@
-#container {
+#game-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -27,12 +27,6 @@
     height: 10vh;
 }
 
-.player-score-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 #score-header {
     font-size: $l;
     color: $yellow;
@@ -41,6 +35,64 @@
 .player-name {
     color: $tan;
     font-size: 25px;
+}
+
+.player-score {
+    color: $green;
+    font-size: $xl;
+}
+
+#gameboard {
+    display: grid;
+    width: 70vw;
+    height: 600px;
+    border: 5px solid black;
+    
+    div {
+        height: 35.29px;
+    }
+}
+
+.player {
+    background-color: #67d9ff;
+}
+
+.path {
+    background-color: #c4a886;
+}
+
+.wall {
+    background-color: #619259;
+}
+
+.special-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c4a886;
+    img {
+        width: 100%;
+    }
+}
+
+.finish {
+    background-color: #ffd630;
+}
+
+#turn-information {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $tan;
+    gap: 10px;
+    font-size: $l;
+}
+
+#current-player-information {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 #item-count-container {
@@ -81,30 +133,6 @@
     width: 100px;
 }
 
-.player-score {
-    color: $green;
-    font-size: $xl;
-}
-
-#gameboard {
-    display: grid;
-    width: 70vw;
-    height: 600px;
-    border: 5px solid black;
-    
-    div {
-        height: 35.29px;
-    }
-}
-
-#turn-information {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    color: $tan;
-    gap: 10px;
-    font-size: $l;
-}
 
 #leaderboard {
     display: flex;
@@ -127,14 +155,4 @@
     background-color: $black-lo;
     border-radius: 10px;
     height: 610px;
-}
-
-.special-item-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    img {
-        width: 100%;
-    }
 }

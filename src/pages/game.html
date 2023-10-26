@@ -15,7 +15,7 @@ UCID: 30140765
         <title>Maze Runners</title>
     </head>
     <body>
-        <div id="container">
+        <div id="game-container">
             <div id="nav-bar">
                 <div id="nav-content">
                     <a href="home.html">
@@ -36,19 +36,21 @@ UCID: 30140765
                     <div id="game-wrapper">
                         <div id="gameboard"></div>
                         <div id="turn-information">
-                            <div id="current-player">Current Player</div>
-                            <div id="item-count-container">
-                                <div class="item-holder">
-                                    <div class="item-picture">
-                                        <img src="../../images/berry.png" alt="berry">
+                            <div id="current-player-information">
+                                <div>Current Player</div>
+                                <div id="item-count-container">
+                                    <div class="item-holder">
+                                        <div class="item-picture">
+                                            <img src="../../images/berry.png" alt="berry">
+                                        </div>
+                                        <div class="item-count" id="berry-count">0</div>
                                     </div>
-                                    <div class="item-count" id="berry-count">0</div>
-                                </div>
-                                <div class="item-holder">
-                                    <div class="item-picture">
-                                        <img src="../../images/golden-berry.png" alt="golden berry">
+                                    <div class="item-holder">
+                                        <div class="item-picture">
+                                            <img src="../../images/golden-berry.png" alt="golden berry">
+                                        </div>
+                                        <div class="item-count" id="gold-berry-count">0</div>
                                     </div>
-                                    <div class="item-count" id="gold-berry-count">0</div>
                                 </div>
                             </div>
                             <div id="timer">0:00</div>
