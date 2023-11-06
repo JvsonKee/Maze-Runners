@@ -76,21 +76,31 @@
 }
 
 #timer {
-    font-size: $xl;
+    font-size: 30px;
     color: $yellow;
+    text-align: center;
+    // background-color: green;
+    width: 210px;
 }
 
 .player-score {
     color: $green;
+    font-size: $l;
+}
+
+.winner-message {
+    grid-column: 12 / 20;
+    grid-row: 2;
     font-size: $xl;
+    text-align: center;
+    color: $yellow;
 }
 
 #gameboard {
-    display: grid;
+    // display: grid;
     width: 70vw;
     height: 600px;
     border: 5px solid black;
-    
     div {
         height: 35.29px;
     }

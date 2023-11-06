@@ -240,17 +240,26 @@ a {
 }
 
 #timer {
-  font-size: 42px;
+  font-size: 30px;
   color: #EAB14B;
+  text-align: center;
+  width: 210px;
 }
 
 .player-score {
   color: #619259;
+  font-size: 30px;
+}
+
+.winner-message {
+  grid-column: 12/20;
+  grid-row: 2;
   font-size: 42px;
+  text-align: center;
+  color: #EAB14B;
 }
 
 #gameboard {
-  display: grid;
   width: 70vw;
   height: 600px;
   border: 5px solid black;

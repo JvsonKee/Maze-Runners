@@ -53,78 +53,98 @@ class Timer {
       }
 }
 
+function GameState() {
+    this.isRunning = false;
+}
+
 function Player(name, id,  xCoordinate, yCoordinate) {
     this.name = name;
     this.id = id;
     this.xCoordinate = xCoordinate;
     this.yCoordinate = yCoordinate;
+    this.isDone = false;
     this.specialItems = [0,0];
+    this.runTime = 0;
+    this.finalTime = 0; 
+    this.scoreHistory = [];
 
     this.right = function() {
-        if (!isWall(xCoordinate, yCoordinate + 1) && !isOtherPlayer(xCoordinate, yCoordinate + 1)) {
-            if (isFinished(xCoordinate, yCoordinate + 1)) {
-                timer.stop();
+        if (isValidMove(this.xCoordinate, this.yCoordinate + 1)) {
+            let prevTile = getTile(this.xCoordinate, this.yCoordinate);
+            let newTile = getTile(this.xCoordinate, this.yCoordinate + 1);
+            if (!this.isDone) {
+                if (isFinished(this.xCoordinate, this.yCoordinate + 1)) {
+                    this.runTime = (timer.getTime() / 1000).toFixed(1);
+                    this.isDone = true;
+                    this.calculateScore();
+                    updatePlayerTimeOnScoreboard(this.finalTime, this.id);
+                    if (shouldEndGame()) {
+                        timer.stop();
+                        state.isRunning = false;
+                        displayWinner();
+                    }
+                    this.calculateScore();
+                    maze[this.xCoordinate][this.yCoordinate] = 0;
+                    maze[this.xCoordinate][this.yCoordinate + 1] = 6;
+    
+                } else {
+                    if (isSpecialItemTile(this.xCoordinate, this.yCoordinate + 1)) {
+                        this.pickupItem(this.xCoordinate, this.yCoordinate + 1);
+                    }
+                    maze[this.xCoordinate][this.yCoordinate] = 0;
+                    maze[this.xCoordinate][this.yCoordinate + 1] = id;
+                }
+                this.yCoordinate++;
+                updateTileAfterMove(newTile, prevTile, id);
             }
-            if (isSpecialItemTile(xCoordinate, yCoordinate + 1)) {
-                this.pickupItem(xCoordinate, yCoordinate + 1);
-            }
-            maze[xCoordinate][yCoordinate] = 0;
-            maze[xCoordinate][yCoordinate + 1] = id;
-            let prevTile = getTile(xCoordinate, yCoordinate);
-            let newTile = getTile(xCoordinate, yCoordinate + 1);
-            yCoordinate++;
-            updateTileAfterMove(newTile, prevTile, id);
         }
     }
 
     this.left = function() {
-        if (!isWall(xCoordinate, yCoordinate - 1) && !isOtherPlayer(xCoordinate, yCoordinate - 1)) {
-            if (isFinished(xCoordinate, yCoordinate - 1)) {
-                timer.stop();
+        if (!this.isDone) {
+            if (isValidMove(this.xCoordinate, this.yCoordinate - 1)) {
+                if (isSpecialItemTile(this.xCoordinate, this.yCoordinate - 1)) {
+                    this.pickupItem(this.xCoordinate, this.yCoordinate - 1);
+                }
+                maze[this.xCoordinate][this.yCoordinate] = 0;
+                maze[this.xCoordinate][this.yCoordinate - 1] = id;
+                let prevTile = getTile(this.xCoordinate, this.yCoordinate);
+                let newTile = getTile(this.xCoordinate, this.yCoordinate - 1);
+                this.yCoordinate--;
+                updateTileAfterMove(newTile, prevTile, id);
             }
-            if (isSpecialItemTile(xCoordinate, yCoordinate - 1)) {
-                this.pickupItem(xCoordinate, yCoordinate - 1);
-            }
-            maze[xCoordinate][yCoordinate] = 0;
-            maze[xCoordinate][yCoordinate - 1] = id;
-            let prevTile = getTile(xCoordinate, yCoordinate);
-            let newTile = getTile(xCoordinate, yCoordinate - 1);
-            yCoordinate--;
-            updateTileAfterMove(newTile, prevTile, id);
         }
     }
 
     this.up = function() {
-        if (!isWall(xCoordinate - 1, yCoordinate) && !isOtherPlayer(xCoordinate - 1, yCoordinate)) {
-            if (isFinished(xCoordinate - 1, yCoordinate)) {
-                timer.stop();
+        if (!this.isDone) {
+            if (isValidMove(this.xCoordinate - 1, this.yCoordinate)) {
+                if (isSpecialItemTile(this.xCoordinate - 1, this.yCoordinate)) {
+                    this.pickupItem(this.xCoordinate - 1, this.yCoordinate);
+                }
+                maze[this.xCoordinate][this.yCoordinate] = 0;
+                maze[this.xCoordinate - 1][this.yCoordinate] = id;
+                let prevTile = getTile(this.xCoordinate, this.yCoordinate);
+                let newTile = getTile(this.xCoordinate - 1, this.yCoordinate);
+                this.xCoordinate--;
+                updateTileAfterMove(newTile, prevTile, id);
             }
-            if (isSpecialItemTile(xCoordinate - 1, yCoordinate)) {
-                this.pickupItem(xCoordinate - 1, yCoordinate);
-            }
-            maze[xCoordinate][yCoordinate] = 0;
-            maze[xCoordinate - 1][yCoordinate] = id;
-            let prevTile = getTile(xCoordinate, yCoordinate);
-            let newTile = getTile(xCoordinate - 1, yCoordinate);
-            xCoordinate--;
-            updateTileAfterMove(newTile, prevTile, id);
         }
     }
 
     this.down = function() {
-        if (!isWall(xCoordinate + 1, yCoordinate) && !isOtherPlayer(xCoordinate + 1, yCoordinate)) {
-            if (isFinished(xCoordinate + 1, yCoordinate)) {
-                timer.stop();
+        if (!this.isDone) {
+            if (isValidMove(this.xCoordinate + 1, this.yCoordinate)) {
+                if (isSpecialItemTile(this.xCoordinate + 1, this.yCoordinate)) {
+                    this.pickupItem(this.xCoordinate + 1, this.yCoordinate);
+                }
+                maze[this.xCoordinate][this.yCoordinate] = 0;
+                maze[this.xCoordinate + 1][this.yCoordinate] = id;
+                let prevTile = getTile(this.xCoordinate, this.yCoordinate);
+                let newTile = getTile(this.xCoordinate + 1, this.yCoordinate);
+                this.xCoordinate++;
+                updateTileAfterMove(newTile, prevTile, id);
             }
-            if (isSpecialItemTile(xCoordinate + 1, yCoordinate)) {
-                this.pickupItem(xCoordinate + 1, yCoordinate);
-            }
-            maze[xCoordinate][yCoordinate] = 0;
-            maze[xCoordinate + 1][yCoordinate] = id;
-            let prevTile = getTile(xCoordinate, yCoordinate);
-            let newTile = getTile(xCoordinate + 1, yCoordinate);
-            xCoordinate++;
-            updateTileAfterMove(newTile, prevTile, id);
         }
     }
 
@@ -137,54 +157,80 @@ function Player(name, id,  xCoordinate, yCoordinate) {
             updateItemCount(id, this.specialItems, 5);
         }
     }
+
+    this.calculateScore = function() {
+        let playerOneTimeReduction = this.convertBerryCountToTime();
+        let score = (this.runTime - playerOneTimeReduction).toFixed(1);
+        
+        this.scoreHistory.push(score);
+        this.finalTime = score;
+    }   
+
+    this.convertBerryCountToTime = function() {
+        let berryTime = 0;
+        berryTime += this.specialItems[0];
+        berryTime += this.specialItems[1] * 3;
+        return berryTime;
+    }
+
+    this.reset = function(startX, startY) {
+        this.finalTime = 0;
+        this.runTime = 0;
+        this.xCoordinate = startX; 
+        this.yCoordinate = startY;
+        this.isDone = false;
+        this.specialItems = [0,0];
+    }
 }
 
-const p1 = new Player("name", 2, 8, 0);
-const p2 = new Player("name", 3, 12, 0);
+const p1 = new Player("name", 2, 6, 0);
+const p2 = new Player("name", 3, 10, 0);
+const state = new GameState();
+const timer = new Timer();
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == " " && !state.isRunning) {
+        resetGame();
+        startGame();
+        p1.isRunning = true;
+        p2.isRunning = true;
+    }
+})
 
 let tan = "#c4a886";
 let green = "#619259";
 let blue = "#67d9ff";
 let gold = "#ffd630";
 
-/**
- * holds all players' scores respectively 
- */
-let firstPlayerScores = [];
-let secondPlayerScores = [];
-
-/**
- * contains the top scores 
- */
-let leaderboard = [];
-
-const maze = [
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,4,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,4,1,0,0,0,0,0,0,4,1,1,1],
-    [1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1],
-    [1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1,0,1,1,1],
-    [1,0,0,1,1,0,0,1,4,1,1,5,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,1,1],
-    [1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,1,1],
-    [1,0,0,1,4,1,0,1,1,1,1,0,0,0,0,4,1,1,0,1,0,0,0,1,1,0,1,1,1],
-    [1,0,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,1],
-    [2,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,0,0,1,1,1],
-    [1,1,0,1,1,1,1,1,5,0,0,0,1,1,1,0,0,0,0,1,1,5,1,0,1,0,0,0,6],
-    [1,1,0,1,0,0,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,0,1,0,1,1,1,1,1],
-    [1,1,0,1,0,1,0,1,1,1,0,1,1,0,0,0,0,1,0,1,1,0,1,0,1,0,0,0,1],
-    [3,0,0,1,0,1,0,0,0,1,0,0,0,0,1,0,1,1,0,1,1,0,1,0,1,0,1,0,1],
-    [1,0,1,1,0,1,0,1,0,1,1,4,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
-    [1,4,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-    [1,1,1,0,1,1,0,0,0,0,0,4,0,0,1,0,0,5,1,1,1,4,0,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-];
-
-function sayHello() {
-    console.log("hello");
+function createMaze() {
+    const maze = [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,4,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,4,1,0,0,0,0,0,0,0,0,4,1],
+        [1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1],
+        [1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1],
+        [1,0,0,1,1,0,0,1,4,1,1,5,0,0,0,1,1,0,1,1,1,1,0,1,0,1,1,1,1],
+        [1,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0,1,0,1,0,1,1,1,1],
+        [2,0,0,1,4,1,0,1,1,1,1,0,0,0,0,4,1,1,0,1,0,0,0,1,0,1,1,1,1],
+        [1,0,1,1,0,1,0,0,0,0,0,0,1,1,1,1,1,1,0,1,1,0,1,1,0,1,1,1,1],
+        [1,0,0,0,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,0,0,1,1,1],
+        [1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,0,0,0,0,1,1,5,1,0,1,0,0,0,6],
+        [3,0,0,1,0,0,0,1,5,0,0,1,1,1,1,0,1,1,0,1,1,0,1,0,1,1,1,1,1],
+        [1,0,1,1,0,1,0,1,1,1,0,1,1,0,0,0,4,1,0,1,1,0,1,0,1,0,0,0,1],
+        [1,0,1,1,0,1,0,0,0,0,0,0,0,0,1,0,1,1,0,1,1,0,1,0,1,0,1,0,1],
+        [1,0,1,1,0,1,0,1,0,1,1,4,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
+        [1,4,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
+        [1,1,1,1,1,1,0,0,0,0,0,4,0,0,1,0,0,5,1,1,1,0,0,0,0,0,0,4,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    ];
+    return maze;
 }
 
-generateMaze();
+maze = createMaze();
 
-function generateMaze() {
+loadMaze();
+
+function loadMaze() {
+    gameboard.style.display = "grid";
     gameboard.style.gridTemplateColumns = `repeat(${maze.length}, 1fr)`;
     gameboard.style.gridTemplateColumns = `repeat(${maze[0].length}, 1fr)`;
 
@@ -241,46 +287,43 @@ function generateMaze() {
         } 
     }
 }
-
-const timer = new Timer();
-
 move();
 /**
  * function for player movement
  * need to implement up, down, left and right movement for the player
  */
 function move() {
-    startTimer(timer);
     document.addEventListener('keydown', (e) => {
-        switch (e.key) {
-            case "ArrowRight":
-                p1.right();
-                break;
-            case "ArrowLeft":
-                p1.left();
-                break;
-            case "ArrowUp":
-                p1.up();
-                break;
-            case "ArrowDown":
-                p1.down();
-                break;
-            case "d":
-                p2.right();
-                break;
-            case "a":
-                p2.left();
-                break;
-            case "w":
-                p2.up();
-                break;
-            case "s":
-                p2.down();
-                break;
-            default:
-                break;
+        if (state.isRunning) {
+            switch (e.key) {
+                case "ArrowRight":
+                    p1.right();
+                    break;
+                case "ArrowLeft":
+                    p1.left();
+                    break;
+                case "ArrowUp":
+                    p1.up();
+                    break;
+                case "ArrowDown":
+                    p1.down();
+                    break;
+                case "d":
+                    p2.right();
+                    break;
+                case "a":
+                    p2.left();
+                    break;
+                case "w":
+                    p2.up();
+                    break;
+                case "s":
+                    p2.down();
+                    break;
+                default:
+                    break;
+            }
         }
-        console.log(maze);
     })
 }
 
@@ -294,14 +337,18 @@ function getTile(x, y) {
  * will need to change tile appearance when play passes over the tile
  */
 function updateTileAfterMove(newTile, prevTile, id) {
-    if (id === 2) {
-        newTile.style.backgroundColor = blue;
-    } else if (id === 3) {
-        newTile.style.backgroundColor = "red";
-    }
-
-    if (newTile.childNodes.length > 0) {
-        newTile.removeChild(newTile.firstChild);
+    if (newTile.className == "finish") {
+        newTile.style.backgroundColor = gold;
+    } else  {
+        if (id === 2) {
+            newTile.style.backgroundColor = blue;
+        } else if (id === 3) {
+            newTile.style.backgroundColor = "red";
+        }
+    
+        if (newTile.childNodes.length > 0) {
+            newTile.removeChild(newTile.firstChild);
+        }
     }
     prevTile.style.backgroundColor = tan;
 }
@@ -340,6 +387,20 @@ function isFinished(x, y) {
     return false;
 }
 
+function isOutOfBounds(y) {
+    if (y < 0 || y > maze[0].length) {
+        return true;
+    }
+    return false;
+}
+
+function isValidMove(x, y) {
+    if (!isWall(x, y) && !isOtherPlayer(x, y) && !isOutOfBounds(y)) {
+        return true;
+    }
+    return false;
+}
+
 function updateItemCount(id, array, type) {
     switch(id) {
         case 2: 
@@ -361,16 +422,18 @@ function updateItemCount(id, array, type) {
     }
 }
 
-/**
- * function for counting total items after player has completed their run
- * will be used when calculating overall score of a run
- */
-function countItems() {}
-
-/**
- * function to reset item count after player's run
- */
-function resetItemCount() {}
+function updatePlayerTimeOnScoreboard(time, playerId) {
+    switch (playerId) {
+        case 2:
+            document.querySelector('#player-one-time').innerHTML = time;
+            break;
+        case 3:
+            document.querySelector('#player-two-time').innerHTML = time;
+            break;
+        default:
+            break;
+    }
+}
 
 function startTimer(timer) {
     timer.start();
@@ -379,21 +442,86 @@ function startTimer(timer) {
         document.querySelector('#timer').innerHTML = time;
     }, 100);
 }
-/**
- * function to reset the time after player's run
- */
-function resetTime() {}
+
+async function countDown() {
+    let timeLeft = 3;
+    let downloadTimer = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(downloadTimer);
+            startTimer(timer);
+            state.isRunning = true;
+        }
+        let timerText = document.querySelector('#timer');
+        if (timeLeft > 0) {
+            timerText.innerHTML = timeLeft;
+        } 
+        timeLeft--;
+    }, 1000)
+}
+
+function startGame() {
+    if (!state.isRunning) {
+        countDown();
+    }
+}
+
+function shouldEndGame() {
+    if (p1.isDone && p2.isDone) {
+        return true;
+    } 
+    return false;
+} 
+
+function resetGame() {
+    resetScoreboard();
+    state.isRunning = false;
+    maze = createMaze();
+    clearGameboard();
+    loadMaze();
+    p1.reset(6, 0);
+    p2.reset(10, 0);
+    timer.reset();
+}
+
+function resetScoreboard() {
+    document.querySelectorAll('.item-count').forEach((item) => {
+        item.innerHTML = "0";
+    })
+    document.querySelectorAll('.player-score').forEach((score) => {
+        score.innerHTML = " ";
+    })
+    document.querySelector('#timer').innerHTML = " ";
+}
+
+function clearGameboard() {
+    document.querySelector('#gameboard').replaceChildren();
+}
+
 
 /**
  * function to calculate the winner of a run 
  * need to implement simple calculation to determine which player took the least ammount of time
  */
-function calculateWinner() {}
+function displayWinner() {
+    let gameboard = document.querySelector('#gameboard');
+    gameboard.replaceChildren();
+    gameboard.style.display = "flex";
+    gameboard.style.justifyContent = "center";
+    gameboard.style.alignItems = "center";
 
-/**
- * function to display the winner
- */
-function displayWinner() {}
+    const winnerMessage = document.createElement('div');
+    winnerMessage.classList.add('winner-message');
+
+    if (parseFloat(p1.finalTime) < parseFloat(p2.finalTime)) {
+        winnerMessage.innerHTML = "Player 1 wins! (space) to play again"
+        console.log('p1 wins');
+    } else if (parseFloat(p1.finalTime) > parseFloat(p2.finalTime)){
+        winnerMessage.innerHTML = "Player 2 wins! (space) to play again"
+        console.log('p2 wins');
+    }
+    gameboard.append(winnerMessage);
+    gameboard.style.backgroundColor = "#619259";
+}
 
 /**
  * function to update the scoreboard
