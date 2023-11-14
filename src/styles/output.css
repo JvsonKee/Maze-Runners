@@ -1,10 +1,6 @@
-body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a {
+body, h1, h2, h3, h4, h5, h6, p, a {
   margin: 0;
   padding: 0;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
-  display: block;
 }
 
 #nav-bar {
@@ -208,7 +204,7 @@ a {
   color: #E1C8AC;
   font-size: 25px;
 }
-.player-information #item-count-container {
+.player-information .item-count-container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
