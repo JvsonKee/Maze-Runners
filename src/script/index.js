@@ -27,12 +27,16 @@ function processForm(text) {
         document.querySelector("#prompt-button").onclick = () => {
             let player1 = document.querySelector("#player1-name-input");
             let player2 = document.querySelector("#player2-name-input");
-            document.querySelector("#prompt").classList.add("hidden");
-            document.querySelector("#overlay").classList.add("hidden");
             p1 = new Player(player1.value, 2, 6, 0);
             p2 = new Player(player2.value, 3, 10, 0);
             triggerGameStart();
-            resolve([player1.value, player2.value]);
+            if (!player1.value == "" && !player2.value == "") {
+                resolve([player1.value, player2.value]);
+                document.querySelector("#prompt").classList.add("hidden");
+                document.querySelector("#overlay").classList.add("hidden");
+            } else {
+                
+            }
         }
     });
 }
@@ -281,7 +285,7 @@ function displayWinner() {
     winnerMessage.classList.add('winner-message');
 
     if (parseFloat(p1.finalTime) < parseFloat(p2.finalTime)) {
-        winnerMessage.innerHTML = `${p1.name} <br /> (space) to play again`
+        winnerMessage.innerHTML = `${p1.name} wins! <br /> (space) to play again`
         console.log('p1 wins');
     } else if (parseFloat(p1.finalTime) > parseFloat(p2.finalTime)){
         winnerMessage.innerHTML = `${p2.name} wins! <br /> (space) to play again`
