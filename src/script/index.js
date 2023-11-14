@@ -1,9 +1,15 @@
+/**
+ * GameState class
+ */
 class GameState {
     constructor() {
         this.isRunning = false;
     }
 }
 
+/**
+ * Colour variables
+ */
 const tan = "#c4a886";
 const green = "#619259";
 const red = "#FF4545";
@@ -21,6 +27,11 @@ let names = processForm("Enter player names: ")
 let maze = createMaze();
 intializeGameDefaults();
 
+/**
+ * Processes the input from the prompt
+ * @param {string} text 
+ * @returns array of player names
+ */
 function processForm(text) {
     document.querySelector("#prompt-text").innerHTML = text;
     return new Promise((resolve, reject) => {
@@ -41,6 +52,9 @@ function processForm(text) {
     });
 }
 
+/**
+ * Call default games functions to load the maze and player movement
+ */
 function intializeGameDefaults() {
     loadMaze();
     move();
@@ -50,6 +64,9 @@ function intializeGameDefaults() {
     })
 }
 
+/**
+ * Listens for the spacebar to be pressed and triggers the game to start
+ */
 function triggerGameStart() {
     document.addEventListener('keydown', (e) => {
         if (e.key == " " && !state.isRunning) {
@@ -61,12 +78,18 @@ function triggerGameStart() {
     })
 }
 
+/**
+ * Starts the game countdown
+ */
 function startCountDown() {
     if (!state.isRunning) {
         countDown();
     }
 }
 
+/**
+ * 3 second count down
+ */
 async function countDown() {
     let timeLeft = 3;
     let downloadTimer = setInterval(() => {
@@ -83,6 +106,10 @@ async function countDown() {
     }, 1000)
 }
 
+/**
+ * Starts the game timer
+ * @param {Timer} timer 
+ */
 function startTimer(timer) {
     timer.start();
     setInterval(() => {
@@ -91,6 +118,10 @@ function startTimer(timer) {
     }, 100);
 }
 
+/**
+ * Checks to see if both players are done or not 
+ * @returns true or false 
+ */
 function shouldEndGame() {
     if (p1.isDone && p2.isDone) {
         return true;
@@ -98,6 +129,9 @@ function shouldEndGame() {
     return false;
 } 
 
+/**
+ * Resets the game defaults
+ */
 function resetGame() {
     timer.reset();
     resetScoreboard();
@@ -110,8 +144,7 @@ function resetGame() {
 }
 
 /**
- * function for player movement
- * need to implement up, down, left and right movement for the player
+ * Listens for player keyboard inputs and moves player around the board
  */
 function move() {
     document.addEventListener('keydown', (e) => {
@@ -148,14 +181,22 @@ function move() {
     })
 }
 
+/**
+ * Gets the current tile the player is on
+ * @param {int} x 
+ * @param {int} y 
+ * @returns Element
+ */
 function getTile(x, y) {
     let tile = document.querySelector(`[data-x-coordinate="${x}"][data-y-coordinate="${y}"]`);
     return tile;
 }
 
 /**
- * function to update the tile the player is currently on/passed over 
- * will need to change tile appearance when play passes over the tile
+ * Updates the current and previous tiles the player interacts with
+ * @param {Element} newTile 
+ * @param {Element} prevTile 
+ * @param {int} id 
  */
 function updateTileAfterMove(newTile, prevTile, id) {
     if (newTile.className == "finish") {
@@ -175,7 +216,10 @@ function updateTileAfterMove(newTile, prevTile, id) {
 }
 
 /**
- * boolean function to check if player is on a special item spot
+ * Checks the tile is a special item tile
+ * @param {int} x 
+ * @param {int} y 
+ * @returns true or false
  */
 function isSpecialItemTile(x, y) {
     if (maze[x][y] === 4 || maze[x][y] === 5) {
@@ -185,7 +229,10 @@ function isSpecialItemTile(x, y) {
 }
 
 /**
- * boolean function to check if player is running into a wall
+ * Checks if the tile is a wall
+ * @param {int} x 
+ * @param {int} y 
+ * @returns true or false
  */
 function isWall(x, y) {
     if (maze[x][y] === 1) {
@@ -194,6 +241,12 @@ function isWall(x, y) {
     return false;
 }
 
+/**
+ * Checks if there is another player at the given coordinate
+ * @param {int} x 
+ * @param {int} y 
+ * @returns true or false
+ */
 function isOtherPlayer(x, y) {
     if (maze[x][y] === 3 || maze[x][y] === 2) {
         return true;
@@ -201,6 +254,12 @@ function isOtherPlayer(x, y) {
     return false;
 }
 
+/**
+ * Checks if the tile is the finish line
+ * @param {int} x 
+ * @param {int} y 
+ * @returns true or false
+ */
 function isFinished(x, y) {
     if (maze[x][y] === 6) {
         return true;
@@ -208,6 +267,11 @@ function isFinished(x, y) {
     return false;
 }
 
+/**
+ * Checks if the tile is out of bounds
+ * @param {int} y 
+ * @returns true or false
+ */
 function isOutOfBounds(y) {
     if (y < 0 || y > maze[0].length) {
         return true;
@@ -215,6 +279,12 @@ function isOutOfBounds(y) {
     return false;
 }
 
+/**
+ * Checks if the player is making a valid move
+ * @param {int} x 
+ * @param {int} y 
+ * @returns true or false
+ */
 function isValidMove(x, y) {
     if (!isWall(x, y) && !isOtherPlayer(x, y) && !isOutOfBounds(y)) {
         return true;
@@ -222,6 +292,12 @@ function isValidMove(x, y) {
     return false;
 }
 
+/**
+ * Updates the item count for a player on the scoreboard
+ * @param {int} id 
+ * @param {int} array 
+ * @param {int} type 
+ */
 function updateItemCount(id, array, type) {
     switch(id) {
         case 2: 
@@ -243,6 +319,11 @@ function updateItemCount(id, array, type) {
     }
 }
 
+/**
+ * Updates the players run time on the scoreboard
+ * @param {int} time 
+ * @param {int} playerId 
+ */
 function updatePlayerTimeOnScoreboard(time, playerId) {
     switch (playerId) {
         case 2:
@@ -256,6 +337,9 @@ function updatePlayerTimeOnScoreboard(time, playerId) {
     }
 }
 
+/**
+ * Resets the scoreboard 
+ */
 function resetScoreboard() {
     document.querySelectorAll('.item-count').forEach((item) => {
         item.innerHTML = "0";
@@ -266,13 +350,15 @@ function resetScoreboard() {
     document.querySelector('#timer').innerHTML = " ";
 }
 
+/**
+ * Clears gameboard
+ */
 function clearGameboard() {
     document.querySelector('#gameboard').replaceChildren();
 }
 
 /**
- * function to calculate the winner of a run 
- * need to implement simple calculation to determine which player took the least ammount of time
+ * Displays the winner
  */
 function displayWinner() {
     let gameboard = document.querySelector('#gameboard');
@@ -295,6 +381,10 @@ function displayWinner() {
     gameboard.style.backgroundColor = green;
 }
 
+/**
+ * Creates the maze
+ * @returns 2-dimensional array
+ */
 function createMaze() {
     const originalMaze = [
         [7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8],
@@ -318,6 +408,9 @@ function createMaze() {
     return originalMaze;
 }
 
+/**
+ * Loads the maze from the 2-Dimensional array
+ */
 function loadMaze() {
     let gameboard = document.querySelector('#gameboard');
     gameboard.style.display = "grid";

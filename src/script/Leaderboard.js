@@ -3,6 +3,11 @@ class Leaderboard {
         this.scores = [];
     }
 
+    /**
+     * Adds a time to the leaderboard
+     * @param {Player} player 
+     * @param {int} time 
+     */
     addScore(player, time) {
         const leaderboardItem = {
             name: player,
@@ -12,6 +17,9 @@ class Leaderboard {
         this.sortLeaderboard();
     }
 
+    /**
+     * Displays the scores onto the leaderboard
+     */
     displayLeaderboard() {
         let leaderboardScores = document.querySelector('#leaderboard-scores');
         leaderboardScores.replaceChildren();
@@ -32,6 +40,9 @@ class Leaderboard {
         });
     }
 
+    /**
+     * Sorts the leaderboard in ascending order
+     */
     sortLeaderboard() {
         this.scores.sort((a, b) => a.time - b.time);
     }

@@ -11,6 +11,9 @@ class Player {
         this.scoreHistory = [];
     }
 
+    /**
+     * Moves player right
+     */
     right() {
         if (isValidMove(this.xCoordinate, this.yCoordinate + 1)) {
             let prevTile = getTile(this.xCoordinate, this.yCoordinate);
@@ -44,6 +47,9 @@ class Player {
         }
     }
 
+    /**
+     * Moves player left
+     */
     left() {
         if (!this.isDone) {
             if (isValidMove(this.xCoordinate, this.yCoordinate - 1)) {
@@ -59,7 +65,9 @@ class Player {
             }
         }
     }
-
+    /**
+     * Moves player up
+     */
     up() {
         if (!this.isDone) {
             if (isValidMove(this.xCoordinate - 1, this.yCoordinate)) {
@@ -76,6 +84,9 @@ class Player {
         }
     }
 
+    /**
+     * Moves player down
+     */
     down() {
         if (!this.isDone) {
             if (isValidMove(this.xCoordinate + 1, this.yCoordinate)) {
@@ -92,6 +103,11 @@ class Player {
         }
     }
 
+    /**
+     * Picks up item 
+     * @param {int} x 
+     * @param {int} y 
+     */
     pickupItem(x, y) {
         if (maze[x][y] === 4) {
             this.specialItems[0]++;
@@ -102,6 +118,9 @@ class Player {
         }
     }
 
+    /**
+     * Calculates the final player score
+     */
     calculateScore() {
         let playerOneTimeReduction = this.convertBerryCountToTime();
         let score = (this.runTime - playerOneTimeReduction).toFixed(1);
@@ -110,6 +129,10 @@ class Player {
         this.finalTime = score;
     }   
 
+    /**
+     * Converts number of berries to their time values
+     * @returns double
+     */
     convertBerryCountToTime() {
         let berryTime = 0;
         berryTime += this.specialItems[0];
@@ -117,6 +140,11 @@ class Player {
         return berryTime;
     }
 
+    /**
+     * Resets the player data
+     * @param {int} startX 
+     * @param {int} startY 
+     */
     reset(startX, startY) {
         this.finalTime = 0;
         this.runTime = 0;
