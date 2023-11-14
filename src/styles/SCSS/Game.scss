@@ -33,8 +33,15 @@
     gap: 10px;
 
     .player-name {
-        color: $tan;
         font-size: 25px;
+    }
+
+    #player-one-name {
+        color: $player-one;
+    }
+
+    #player-two-name {
+        color: $player-two;
     }
 
     .item-count-container {

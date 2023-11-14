@@ -201,8 +201,13 @@ a {
   gap: 10px;
 }
 .player-information .player-name {
-  color: #E1C8AC;
   font-size: 25px;
+}
+.player-information #player-one-name {
+  color: #4356FF;
+}
+.player-information #player-two-name {
+  color: #FF4545;
 }
 .player-information .item-count-container {
   display: flex;
