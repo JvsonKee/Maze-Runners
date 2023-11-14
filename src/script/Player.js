@@ -21,9 +21,11 @@ class Player {
                     this.isDone = true;
                     this.calculateScore();
                     updatePlayerTimeOnScoreboard(this.finalTime, this.id);
+                    leaderboard.addScore(this.name, this.finalTime);
                     if (shouldEndGame()) {
                         timer.stop();
                         state.isRunning = false;
+                        leaderboard.displayLeaderboard();
                         displayWinner();
                     }
                     maze[this.xCoordinate][this.yCoordinate] = 0;

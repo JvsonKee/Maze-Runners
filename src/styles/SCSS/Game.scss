@@ -27,7 +27,6 @@
 }
 
 .player-information {
-    // background-color: green;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +78,6 @@
     font-size: 30px;
     color: $yellow;
     text-align: center;
-    // background-color: green;
     width: 210px;
 }
 
@@ -97,39 +95,64 @@
 }
 
 #gameboard {
-    // display: grid;
     width: 70vw;
     height: 600px;
     border: 5px solid black;
+    border-radius: 10px;
     div {
         height: 35.29px;
     }
+    background-color: $green;
 }
 
-.player {
-    background-color: #67d9ff;
+.player1 {
+    background-color: $player-one;
+}
+
+.player2 {
+    background-color: $player-two;
 }
 
 .path {
-    background-color: #c4a886;
+    background-color: $path;
 }
 
 .wall {
-    background-color: #619259;
+    background-color: $green;
 }
 
 .special-item-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #c4a886;
+    background-color: $path;
     img {
         width: 100%;
     }
 }
 
 .finish {
-    background-color: #ffd630;
+    background-color: $finish;
+}
+
+.top-left-corner {
+    background-color: $green;
+    border-radius: 5px 0 0 0;
+}
+
+.top-right-corner {
+    background-color: $green;
+    border-radius: 0 5px 0 0;
+}
+
+.bottom-left-corner {
+    background-color: $green;
+    border-radius: 0 0 0 5px;
+}
+
+.bottom-right-corner {
+    background-color: $green;
+    border-radius: 0 0 5px 0;
 }
 
 #leaderboard {
@@ -149,8 +172,37 @@
     }
     
     #leaderboard-scores {
+        display: flex;
+        flex-direction: column;
         background-color: $black-lo;
         border-radius: 10px;
         height: 610px;
+    }
+
+    .leaderboard-score {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 auto;
+        width: 80%;
+        height: 50px;
+        text-align: center;
+        color: $tan;
+
+        #index {
+            width: 30px;
+            font-size: $s;
+            color: $yellow;
+        }
+
+        #leaderboard-name {
+            font-weight: bold;
+        }
+
+        #leaderboard-time {
+            width: 50px;
+            font-size: $s;
+            color: $green;
+        }
     }
 }

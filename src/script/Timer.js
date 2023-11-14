@@ -5,14 +5,6 @@ class Timer {
         this.overallTime = 0;
     }
 
-    _getTimeElapsedSinceLastStart () {
-        if (!this.startTime) {
-          return 0;
-        }
-      
-        return Date.now() - this.startTime;
-      }
-
     start() {
         if (this.isRunning) {
             return console.error("Timer is already running");
@@ -26,7 +18,7 @@ class Timer {
             return console.error("Timer is already stopped");
         }
         this.isRunning = false;
-        this.overallTime = this.overallTime + this._getTimeElapsedSinceLastStart();
+        this.overallTime = this.overallTime + this.getTimeSinceLastStart();
     }
 
     reset() {
@@ -46,9 +38,17 @@ class Timer {
         }
     
         if (this.isRunning) {
-          return this.overallTime + this._getTimeElapsedSinceLastStart();
+          return this.overallTime + this.getTimeSinceLastStart();
         }
     
         return this.overallTime;
       }
+
+	  getTimeSinceLastStart () {
+        if (!this.startTime) {
+          return 0;
+        }
+      
+        return Date.now() - this.startTime;
+    }
 }

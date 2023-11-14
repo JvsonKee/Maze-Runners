@@ -4,25 +4,46 @@ class GameState {
     }
 }
 
-let leaderboard = [];
+const tan = "#c4a886";
+const green = "#619259";
+const red = "#FF4545";
+const blue = "#4356FF";
+const gold = "#ffd630";
 
-const p1 = new Player("name", 2, 6, 0);
-const p2 = new Player("name", 3, 10, 0);
+const leaderboard = new Leaderboard();
 const state = new GameState();
 const timer = new Timer();
 
-const tan = "#c4a886";
-const green = "#619259";
-const blue = "#67d9ff";
-const gold = "#ffd630";
+let p1;
+let p2;
 
+let names = processForm("Enter player names: ")
 let maze = createMaze();
-triggerGameStart();
 intializeGameDefaults();
+
+function processForm(text) {
+    document.querySelector("#prompt-text").innerHTML = text;
+    return new Promise((resolve, reject) => {
+        document.querySelector("#prompt-button").onclick = () => {
+            let player1 = document.querySelector("#player1-name-input");
+            let player2 = document.querySelector("#player2-name-input");
+            document.querySelector("#prompt").classList.add("hidden");
+            document.querySelector("#overlay").classList.add("hidden");
+            p1 = new Player(player1.value, 2, 6, 0);
+            p2 = new Player(player2.value, 3, 10, 0);
+            triggerGameStart();
+            resolve([player1.value, player2.value]);
+        }
+    });
+}
 
 function intializeGameDefaults() {
     loadMaze();
     move();
+    names.then(value => {
+        document.querySelector('#player-one-name').innerHTML = value[0];
+        document.querySelector('#player-two-name').innerHTML = value[1];
+    })
 }
 
 function triggerGameStart() {
@@ -139,7 +160,7 @@ function updateTileAfterMove(newTile, prevTile, id) {
         if (id === 2) {
             newTile.style.backgroundColor = blue;
         } else if (id === 3) {
-            newTile.style.backgroundColor = "red";
+            newTile.style.backgroundColor = red;
         }
     
         if (newTile.childNodes.length > 0) {
@@ -260,34 +281,19 @@ function displayWinner() {
     winnerMessage.classList.add('winner-message');
 
     if (parseFloat(p1.finalTime) < parseFloat(p2.finalTime)) {
-        winnerMessage.innerHTML = "Player 1 wins! <br /> (space) to play again"
+        winnerMessage.innerHTML = `${p1.name} <br /> (space) to play again`
         console.log('p1 wins');
     } else if (parseFloat(p1.finalTime) > parseFloat(p2.finalTime)){
-        winnerMessage.innerHTML = "Player 2 wins! <br /> (space) to play again"
+        winnerMessage.innerHTML = `${p2.name} wins! <br /> (space) to play again`
         console.log('p2 wins');
     }
     gameboard.append(winnerMessage);
     gameboard.style.backgroundColor = green;
 }
 
-/**
- * function to update the leaderboard
- * will need to choose a sorting algorithm to ensure the scores are displayed properly 
- * probably use quick-sort
- * lowest -> highest
- */
-function updateLeaderboard() {
-
-}
-
-/**
- * will be used to sort leaderboard scores
- */
-function quickSort() {}
-
 function createMaze() {
     const originalMaze = [
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,8],
         [1,4,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,4,1,0,0,0,0,0,0,0,0,4,1],
         [1,0,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1],
         [1,0,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1],
@@ -303,12 +309,13 @@ function createMaze() {
         [1,0,1,1,0,1,0,1,0,1,1,4,1,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
         [1,4,0,0,0,1,0,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
         [1,1,1,1,1,1,0,0,0,0,0,4,0,0,1,0,0,5,1,1,1,0,0,0,0,0,0,4,1],
-        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,10],
     ];
     return originalMaze;
 }
 
 function loadMaze() {
+    let gameboard = document.querySelector('#gameboard');
     gameboard.style.display = "grid";
     gameboard.style.gridTemplateColumns = `repeat(${maze.length}, 1fr)`;
     gameboard.style.gridTemplateColumns = `repeat(${maze[0].length}, 1fr)`;
@@ -329,7 +336,7 @@ function loadMaze() {
                     div.dataset.yCoordinate = j;
                     break;
                 case 2:
-                    div.classList.add('player');
+                    div.classList.add('player1');
                     div.dataset.xCoordinate = i;
                     div.dataset.yCoordinate = j;
                     break;
@@ -337,7 +344,7 @@ function loadMaze() {
                     div.classList.add('player2');
                     div.dataset.xCoordinate = i;
                     div.dataset.yCoordinate = j;
-                    div.style.backgroundColor = "red";
+                    div.style.backgroundColor = red;
                     break;
                 case 4: 
                     div.classList.add('special-item-container');
@@ -359,6 +366,18 @@ function loadMaze() {
                     div.classList.add('finish');
                     div.dataset.xCoordinate = i;
                     div.dataset.yCoordinate = j;
+                    break;
+                case 7: 
+                    div.classList.add('top-left-corner');
+                    break;
+                case 8: 
+                    div.classList.add('top-right-corner');
+                    break;
+                case 9: 
+                    div.classList.add('bottom-left-corner');
+                    break;
+                case 10: 
+                    div.classList.add('bottom-right-corner');
                     break;
                 default:
                     break;

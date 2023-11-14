@@ -9,10 +9,10 @@ Jason Kee (30140765)
 
 ### Rules
 
-- Each player will take their turn running the maze.
-- Picking up items can reduce the overall time of a players run.
+- Players will race each other within the maze.
+- Picking up items reduces the overall time of a players run.
 - Multiple ways to traverse the maze.
-- Player with the best (lowest) time wins.
+- The Player with the best (lowest) time wins.
 
 ### Mechanics
 
@@ -23,3 +23,9 @@ Jason Kee (30140765)
 
 - Berry - Reduces overall time by 1 second
 - Golden Berry - Reduces overall time by 3 seconds
+
+### Changelog
+
+- Players can now race at the same time.
+- Players can now choose their own names.
+- UI changes on the scoreboard.

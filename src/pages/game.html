@@ -11,12 +11,21 @@ UCID: 30140765
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../styles/output.css">
+        <script src="../script/Leaderboard.js" defer></script>
         <script src="../script/Timer.js" defer></script>
         <script src="../script/Player.js" defer></script>
         <script src="../script/index.js" defer></script>
         <title>Maze Runners</title>
     </head>
     <body>
+        <div id="prompt">
+            <div id="prompt-items">
+                <div id="prompt-text"></div>
+                <input type="text" id="player1-name-input" class="name-input" placeholder="Player 1">
+                <input type="text" id="player2-name-input" class="name-input" placeholder="Player 2">
+                <button id="prompt-button">Submit</button>
+            </div>
+        </div>
         <div id="game-container">
             <div id="nav-bar">
                 <div id="nav-content">
@@ -30,7 +39,7 @@ UCID: 30140765
                 <div id="scoreboard-gameboard-container">
                     <div id="scoreboard-container">
                         <div class="player-information">
-                            <div class="player-name">Player 1</div>
+                            <div class="player-name" id="player-one-name"></div>
                             <div id="item-count-container">
                                 <div class="item-holder">
                                     <div class="item-picture">
@@ -50,7 +59,7 @@ UCID: 30140765
                         <div id="timer">(Space) to start</div>
                         <div id="player-two-time" class="player-score"></div>
                         <div class="player-information">
-                            <div class="player-name">Player 2</div>
+                            <div class="player-name" id="player-two-name"></div>
                             <div id="item-count-container">
                                 <div class="item-holder">
                                     <div class="item-picture">
@@ -74,10 +83,11 @@ UCID: 30140765
                 <div id="leaderboard">
                     <div id="leaderboard-header">Leaderboard</div>
                     <div id="leaderboard-scores">
-
+                        
                     </div>
                 </div>
             </div>
         </div>
+        <div id="overlay"></div>
     </body>
 </html>

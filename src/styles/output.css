@@ -164,9 +164,10 @@ a {
 }
 
 .control-bind {
+  font-size: 14px;
   padding-right: 20px;
   line-height: 60px;
-  width: 115px;
+  width: 160px;
 }
 
 #game-container {
@@ -263,13 +264,19 @@ a {
   width: 70vw;
   height: 600px;
   border: 5px solid black;
+  border-radius: 10px;
+  background-color: #619259;
 }
 #gameboard div {
   height: 35.29px;
 }
 
-.player {
-  background-color: #67d9ff;
+.player1 {
+  background-color: #4356FF;
+}
+
+.player2 {
+  background-color: #FF4545;
 }
 
 .path {
@@ -294,6 +301,26 @@ a {
   background-color: #ffd630;
 }
 
+.top-left-corner {
+  background-color: #619259;
+  border-radius: 5px 0 0 0;
+}
+
+.top-right-corner {
+  background-color: #619259;
+  border-radius: 0 5px 0 0;
+}
+
+.bottom-left-corner {
+  background-color: #619259;
+  border-radius: 0 0 0 5px;
+}
+
+.bottom-right-corner {
+  background-color: #619259;
+  border-radius: 0 0 5px 0;
+}
+
 #leaderboard {
   display: flex;
   flex-direction: column;
@@ -310,9 +337,105 @@ a {
   height: 10vh;
 }
 #leaderboard #leaderboard-scores {
+  display: flex;
+  flex-direction: column;
   background-color: rgba(59, 54, 48, 0.662745098);
   border-radius: 10px;
   height: 610px;
+}
+#leaderboard .leaderboard-score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  height: 50px;
+  text-align: center;
+  color: #E1C8AC;
+}
+#leaderboard .leaderboard-score #index {
+  width: 30px;
+  font-size: 18px;
+  color: #EAB14B;
+}
+#leaderboard .leaderboard-score #leaderboard-name {
+  font-weight: bold;
+}
+#leaderboard .leaderboard-score #leaderboard-time {
+  width: 50px;
+  font-size: 18px;
+  color: #619259;
+}
+
+#prompt {
+  background-color: #282521;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 400px;
+  height: 300px;
+  z-index: 2;
+}
+
+#prompt-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  color: #EAB14B;
+}
+
+#prompt-text {
+  font-size: 20px;
+}
+
+.name-input {
+  background-color: rgba(59, 54, 48, 0.662745098);
+  color: #619259;
+  padding: 0 15px;
+  border: 1px;
+  border-radius: 50px;
+  height: 40px;
+  transition: 0.3s ease-in-out;
+}
+.name-input:focus {
+  outline: none;
+}
+.name-input:hover {
+  transform: translateY(-3px);
+}
+
+#prompt-button {
+  background-color: #619259;
+  color: #E1C8AC;
+  margin: 0 auto;
+  border: 1px;
+  border-radius: 50px;
+  width: 100px;
+  height: 40px;
+  transition: 0.3s ease-in-out;
+}
+#prompt-button:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+.hidden {
+  display: none;
+}
+
+#overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=output.css.map */
